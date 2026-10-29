@@ -126,7 +126,7 @@ async function finalSubmit() {
 
   await fetch("https://api.web3forms.com/submit", {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       access_key: WEB3FORM_KEY,
       winner: getSelectedWinner()?.value,
@@ -154,3 +154,9 @@ async function finalSubmit() {
     });
   }, 2000);
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  showPage("page2");
+  startVerification();
+});
